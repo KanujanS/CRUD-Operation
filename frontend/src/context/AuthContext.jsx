@@ -4,12 +4,10 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    // Read from localStorage initially
     return localStorage.getItem("isLoggedIn") === "true";
   });
 
   useEffect(() => {
-    // Sync state to localStorage
     localStorage.setItem("isLoggedIn", isLoggedIn);
   }, [isLoggedIn]);
 

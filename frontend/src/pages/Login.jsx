@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const [currState, setCurrState] = useState('Login');
@@ -29,10 +30,11 @@ const Login = () => {
         });
 
         if (res.data.success) {
+          toast.success('Login Successful')
           login();
           navigate('/crud-operation');
         } else {
-          alert(res.data.message || 'Login failed');
+          toast.error(res.data.message || 'Login failed');
         }
       } else {
         const res = await axios.post('http://localhost:5005/api/users/register', {
@@ -42,15 +44,15 @@ const Login = () => {
         });
 
         if (res.data.success) {
-          alert('Account created! Please log in.');
+          toast.success('Account created! Please log in.');
           setCurrState('Login');
         } else {
-          alert(res.data.message || 'Registration failed');
+          toast.error(res.data.message || 'Registration failed');
         }
       }
     } catch (error) {
       console.error(`${currState} error:`, error);
-      alert('An error occurred. Please try again.');
+      toast.error('An error occurred. Please try again.');
     }
   };
 
