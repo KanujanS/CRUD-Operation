@@ -102,7 +102,7 @@ const Crud = () => {
         <input type="text" name="name" placeholder="Product Name" value={form.name} onChange={handleChange} className="flex-1 p-2 border-2 border-sky-900 outline-none focus:border-3 focus:border-sky-600 rounded" />
         <input type="number" name="price" placeholder="Price" value={form.price} onChange={handleChange} className="flex-1 p-2 border-2 border-sky-900 outline-none focus:border-3 focus:border-sky-600 rounded"/>
         <input type="number" name="quantity" placeholder="Quantity" value={form.quantity} onChange={handleChange} className="flex-1 p-2 border-2 border-sky-900 outline-none focus:border-3 focus:border-sky-600 rounded" />
-        <button type="submit" className="bg-sky-600 text-white px-4 py-2 hover:bg-sky-700 rounded"> {editingId ? 'Update' : 'Create'} </button>
+        <button type="submit" className="bg-sky-600 text-white px-4 py-2 hover:bg-sky-700 rounded"> {editingId ? 'Update' : 'Add'} </button>
       </form>
 
       

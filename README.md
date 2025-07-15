@@ -1,57 +1,53 @@
-MERN Product CRUD Application with Authentication
-Project Overview
-A full-stack MERN application that enables users to:
+# MERN Product CRUD Application with Authentication
 
-Securely register and log in using JWT authentication
+## Project Overview
 
-Perform CRUD operations on products (Create, Read, Update, Delete)
+A simple MERN (MongoDB, Express.js, React.js, Node.js) stack application that enables users to:
 
-Search products by name
+- Register and log in securely
+- Create, read, update, and delete products
+- Add products with name, price, and quantity
+- Search products by name
+- Restrict access to authenticated users only
+- Persist data using MongoDB
+- Provide user feedback with React Toastify
 
-Access protected routes (authenticated users only)
+## Tech Stack
 
-Receive feedback via React Toastify notifications
+- **Frontend:** React, Tailwind CSS, React Router, Axios, React Toastify
+- **Backend:** Node.js, Express.js, MongoDB, Mongoose
+- **Authentication:** JWT, Context API
+- **Database:** MongoDB
 
-Store data persistently in MongoDB
+## Setup Instructions
 
-Tech Stack
-Frontend: React, Tailwind CSS, React Router, Axios, React Toastify
+### 1. Clone the Repository
 
-Backend: Node.js, Express.js, MongoDB, Mongoose
-
-Authentication: JWT, Context API
-
-Database: MongoDB
-
-Features
-User authentication (register/login)
-
-Create products with name, price, and quantity
-
-View all products with search functionality
-
-Edit existing product details
-
-Delete products
-
-Responsive UI with Tailwind CSS
-
-Toast notifications for user actions
-
-Setup Instructions
-1. Clone the Repository
-bash
+```bash
 git clone https://github.com/your-username/mern-product-crud.git
-cd mern-product-crud
-2. Backend Setup
-bash
+cd CRUD OPERATION
+```
+
+### 2. Backend Setup
+
+```bash
 cd backend
 npm install
-npm run server
-The .env file is included with default configurations
+```
+The `.env` file is already included in the repository.
 
-3. Frontend Setup
-bash
-cd ../frontend
+To start the backend server:
+```bash
+npm run server
+```
+
+### 3. Frontend Setup
+
+```bash
+cd frontend
 npm install
+```
+To start the frontend:
+```bash
 npm run dev
+```
