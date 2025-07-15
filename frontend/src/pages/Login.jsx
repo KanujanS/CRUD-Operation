@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [currState, setCurrState] = useState("Login");
+    const navigate = useNavigate();
     const [data, setData] = useState({
         name:"",
         email:"",
@@ -12,8 +14,19 @@ const Login = () => {
         const value = event.target.value;
         setData(data=>({...data,[name]:value}))
     }
-    const onLogin = async ()=> {
-        
+    const onLogin = async (event)=> {
+        event.preventDefault();
+        const { email, password } = data;
+        try {
+            if (email==='admin@demo.com' && password=== '12345678') {
+                navigate('crud-operation');
+            }
+            else {
+                alert('Invalid Credentials');
+            }
+        } catch (error) {
+            console.error('Login failed:', error);
+        }
     }
   return (
     <div className='pt-50 bg-gradient-to-b from-sky-300'>
