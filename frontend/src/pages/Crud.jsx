@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAuth } from '../context/AuthContext'; // Make sure this path is correct
+import { useNavigate } from 'react-router-dom';
 
 const Crud = () => {
   const [products, setProducts] = useState([]);
@@ -7,7 +9,19 @@ const Crud = () => {
   const [editingId, setEditingId] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
 
+  const { logout, isLoggedIn } = useAuth();   // ✅ use updated context
+  const navigate = useNavigate();
+
   const API_URL = 'http://localhost:5000/api/products';
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate('/'); // 🚫 Redirect to login if not logged in
+      return;
+    }
+
+    fetchProducts();
+  }, [isLoggedIn]);
 
   const fetchProducts = async () => {
     try {
@@ -17,10 +31,6 @@ const Crud = () => {
       console.error(err);
     }
   };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -63,13 +73,26 @@ const Crud = () => {
     }
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
-      <h2 className="text-3xl font-bold text-center mb-6">Product CRUD</h2>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-3xl font-bold">Product CRUD</h2>
+        <button
+          onClick={handleLogout}
+          className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-800"
+        >
+          Logout
+        </button>
+      </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 mb-6">
         <input

@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
     const [currState, setCurrState] = useState("Login");
     const navigate = useNavigate();
+    const { login } = useAuth();
     const [data, setData] = useState({
         name:"",
         email:"",
@@ -14,20 +16,24 @@ const Login = () => {
         const value = event.target.value;
         setData(data=>({...data,[name]:value}))
     }
-    const onLogin = async (event)=> {
-        event.preventDefault();
-        const { email, password } = data;
-        try {
-            if (email==='admin@demo.com' && password=== '12345678') {
-                navigate('crud-operation');
-            }
-            else {
-                alert('Invalid Credentials');
-            }
-        } catch (error) {
-            console.error('Login failed:', error);
-        }
+
+  const onLogin = async (event) => {
+    event.preventDefault();
+    const { email, password } = data;
+
+    try {
+      if (email === 'admin@demo.com' && password === '12345678') {
+        login();
+        navigate('/crud-operation');
+      } else {
+        alert('Invalid Credentials');
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
     }
+  };
+
+
   return (
     <div className='pt-50 bg-gradient-to-b from-sky-300'>
         <form onSubmit={onLogin} className='flex flex-col w-[90%] sm:max-w-100 m-auto gap-4 p-8 text-sky-800 border border-sky-800 rounded-2xl'>
