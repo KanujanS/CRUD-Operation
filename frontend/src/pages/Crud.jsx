@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext'; // Make sure this path is correct
+import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const Crud = () => {
@@ -9,14 +9,14 @@ const Crud = () => {
   const [editingId, setEditingId] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const { logout, isLoggedIn } = useAuth();   // ✅ use updated context
+  const { logout, isLoggedIn } = useAuth();
   const navigate = useNavigate();
 
-  const API_URL = 'http://localhost:5000/api/products';
+  const API_URL = 'http://localhost:5005/api/products';
 
   useEffect(() => {
     if (!isLoggedIn) {
-      navigate('/'); // 🚫 Redirect to login if not logged in
+      navigate('/');
       return;
     }
 
