@@ -24,7 +24,7 @@ A simple MERN (MongoDB, Express.js, React.js, Node.js) stack application that en
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/mern-product-crud.git
+git clone https://github.com/KanujanS/CRUD-Operation.git
 cd CRUD OPERATION
 ```
 
